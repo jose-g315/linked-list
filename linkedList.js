@@ -52,7 +52,7 @@ export default class LinkedList {
       current = current.next;
       counter += 1;
     }
-    return current || null;
+    return current || undefined;
   }
   popHead() {
     if (!this.head) {
@@ -86,7 +86,7 @@ export default class LinkedList {
     return -1;
   }
   insertAt(index, ...values) {
-    if (index < 0) throw RangeError;
+    if (index < 0) throw RangeError();
     if (index === 0) {
       for (let i = values.length - 1; i >= 0; i--) {
         this.prepend(values[i]);
@@ -99,7 +99,7 @@ export default class LinkedList {
       current = current.next;
       counter += 1;
     }
-    if (!current) throw RangeError;
+    if (!current) throw RangeError();
 
     let after = current.next;
     for (let value of values) {
@@ -110,9 +110,9 @@ export default class LinkedList {
     current.next = after;
   }
   removeAt(index) {
-    if (index < 0) throw RangeError;
+    if (index < 0) throw RangeError();
     if (index === 0) {
-      if (!this.head) throw RangeError;
+      if (!this.head) throw RangeError();
       this.head = this.head.next;
       return;
     }
@@ -123,7 +123,7 @@ export default class LinkedList {
       current = current.next;
       counter += 1;
     }
-    if (!current || !current.next) throw RangeError;
+    if (!current || !current.next) throw RangeError();
     current.next = current.next.next;
   }
   toString() {
